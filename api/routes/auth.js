@@ -31,24 +31,24 @@ router.post('/register', async (req, res) => {
   }
 })
 
-router.get('/me', async (req, res) => {
-  const cookies = req.headers
-  console.log(cookies)
+router.post('/me', async (req, res) => {
+  const { userToken } = req.body
   const prisma = new PrismaClient()
   try {
-    if (!cookies.user) {
+    if (!userToken) {
       throw new Error('Нет печеньки')
     }
-    const { sub } = await jwt.verify(cookies.user, 'komsomolradio')
+    const { sub } = await jwt.verify(userToken, 'komsomolradio')
     const user = await prisma.user.findOne({
       where: { email: sub },
-      include: { Channel: true },
+      include: { channel: true },
     })
     if (!user) {
       throw new Error('Пользователь не найден')
     }
     return res.json({ ok: true, user })
   } catch (e) {
+    console.log(e)
     return res.status(500).json(e.message)
   } finally {
     await prisma.$disconnect()
