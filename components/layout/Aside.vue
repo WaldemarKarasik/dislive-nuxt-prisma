@@ -12,7 +12,7 @@
         }
       "
       type="primary"
-      v-if="userIsAuthor && !('channel' in user)"
+      v-if="userIsAuthor && user.channel == null"
       long
       >Создать канал</Button
     >
@@ -20,7 +20,7 @@
       to="/upload"
       type="primary"
       long
-      v-else-if="userIsAuthor && 'channel' in user"
+      v-else-if="userIsAuthor && user.channel !== null"
       >Загрузить видео на канал</Button
     >
   </Drawer>

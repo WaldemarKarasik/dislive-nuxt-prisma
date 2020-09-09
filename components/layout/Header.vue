@@ -30,10 +30,11 @@
         <div class="dropdown">
           <img
             style="width: 2rem; height: 2rem; border-radius: 50%"
-            :src="user.picture"
+            :src="user.avatar"
           />
 
-          {{ user.email.substring(0, user.email.lastIndexOf('@')) }}
+          <!-- {{ user.email.substring(0, user.email.lastIndexOf('@')) }} -->
+          {{ user.username }}
           <Icon type="ios-arrow-down"></Icon>
           <!-- <Avatar :src="user.picture"></Avatar> -->
         </div>
