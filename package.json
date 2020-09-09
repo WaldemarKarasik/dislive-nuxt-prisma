@@ -1,0 +1,28 @@
+{
+  "name": "dislive",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@prisma/cli": "^2.6.2",
+    "@prisma/client": "^2.6.2",
+    "axios": "^0.20.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "iview": "^3.5.4",
+    "jsonwebtoken": "^8.5.1",
+    "nuxt": "^2.14.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "sass-loader": "^10.0.2"
+  }
+}
