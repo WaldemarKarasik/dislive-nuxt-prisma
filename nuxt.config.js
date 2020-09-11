@@ -38,7 +38,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['@/plugins/iview'],
+  plugins: ['@/plugins/iview', {src: '@/plugins/infinite-scroll', mode: 'client'}],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components

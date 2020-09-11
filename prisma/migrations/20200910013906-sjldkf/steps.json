@@ -206,6 +206,63 @@
       "arity": "Optional"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "channel"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "channel"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"user\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "subscribtions",
+      "type": "Channel",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "subscribtions"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "subscribtions"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"subscribtion\""
+    },
+    {
       "tag": "CreateModel",
       "model": "Channel"
     },
@@ -331,6 +388,20 @@
         },
         "directive": "relation"
       },
+      "argument": "name",
+      "value": "\"user\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Channel",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
       "argument": "fields",
       "value": "[userId]"
     },
@@ -361,6 +432,38 @@
       "field": "videos",
       "type": "Video",
       "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Channel",
+      "field": "subscribers",
+      "type": "User",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Channel",
+          "field": "subscribers"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Channel",
+          "field": "subscribers"
+        },
+        "directive": "relation"
+      },
+      "argument": "name",
+      "value": "\"subscribtion\""
     },
     {
       "tag": "CreateModel",
@@ -413,6 +516,13 @@
       "tag": "CreateField",
       "model": "Video",
       "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Video",
+      "field": "src",
       "type": "String",
       "arity": "Required"
     },

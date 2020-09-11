@@ -25,6 +25,7 @@ router.post('/register', async (req, res) => {
     res.cookie('user', hashedEmail, { httpOnly: true })
     return res.json(userToSendToFrontend)
   } catch (e) {
+    console.log(e.message)
     return res.status(500).json(e.message)
   } finally {
     await prisma.$disconnect()
@@ -41,7 +42,15 @@ router.post('/me', async (req, res) => {
     const { sub } = await jwt.verify(userToken, 'komsomolradio')
     const user = await prisma.user.findOne({
       where: { email: sub },
-      include: { channel: true },
+      include: {
+        channel: {
+          include: {
+            videos: true,
+            subscribers: true,
+          },
+        },
+        subscribtions: true,
+      },
     })
     if (!user) {
       throw new Error('Пользователь не найден')
@@ -52,6 +61,36 @@ router.post('/me', async (req, res) => {
     return res.status(500).json(e.message)
   } finally {
     await prisma.$disconnect()
+  }
+})
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body
+  try {
+    const prisma = new PrismaClient()
+
+    const userExists = await prisma.user.findOne({
+      where: { email },
+      include: {
+        channel: { include: { videos: true } },
+        subscribtions: true,
+      },
+    })
+    if (!userExists) {
+      throw Error('Некорректные данные')
+    }
+    const isMatch = await bcryptjs.compare(password, userExists.password)
+    if (!isMatch) {
+      throw Error('Некорректные данные')
+    }
+    const hashedEmail = await jwt.sign(
+      { sub: userExists.email },
+      'komsomolradio'
+    )
+    res.cookie('user', hashedEmail, { httpOnly: true })
+    return res.json(userExists)
+  } catch (e) {
+    return res.status(500).json(e.message)
   }
 })
 

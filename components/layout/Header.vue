@@ -41,7 +41,9 @@
 
         <DropdownMenu slot="list">
           <DropdownItem v-if="user && user.channel"
-            ><Button type="text">Ваши видео</Button></DropdownItem
+            ><Button to="/channel/videos" type="text"
+              >Ваши видео</Button
+            ></DropdownItem
           >
           <DropdownItem>炸酱面</DropdownItem>
           <DropdownItem disabled>豆汁儿</DropdownItem>

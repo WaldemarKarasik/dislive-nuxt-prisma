@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -59,13 +59,8 @@ model Dislike {
 
 model Post {
   id Int @id @default(autoincrement())
-  content String
   video Video @relation(fields: [videoId], references: [id])
   videoId Int
-  user User? @relation(fields: [userId], references: [id])
-  userId Int?
-  channel Channel? @relation(fields: [channelId], references: [id])
-  channelId Int?
   comments Comment[]
   createdAt DateTime @default(now())
 }
